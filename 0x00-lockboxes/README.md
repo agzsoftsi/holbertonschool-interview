@@ -15,6 +15,7 @@
 
 ## Whiteboarding
 
+![](whiteboard1.jpg)
 
 ## Task
 
