@@ -7,7 +7,7 @@ If you're interviewing for a position as a software engineer, it helps to know w
 ## :books: Content
 
 - [0x00-lockboxes](/0x00-lockboxes)
-
+- [0x01-insert_in_sorted_linked_list](/0x01-insert_in_sorted_linked_list)
 
 ## :sagittarius: Author
 
