@@ -61,7 +61,7 @@ int check_grids(int grid1[3][3])
 }
 
 /**
- * print_grids - computes the sum of two sandpiles
+ * print_grid - computes the sum of two sandpiles
  * @grid: sandpiles stable
  * Return: void function
  */
