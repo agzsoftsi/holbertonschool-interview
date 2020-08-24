@@ -1,71 +1,73 @@
 #include "lists.h"
 
 /**
- * size_linkedlist - prints all elements of a listint_t list
- * @head: pointer to head of list
- * Return: number of nodes
+ * is_palindrome - checks if a linked list is palindrome
+ * @head: linked list head
+ * Return: 1 if is palindrome or 0 if not
  */
 
-int size_linkedlist(listint_t **head)
-{
-	listint_t *copy;
-	int size = 0;
-
-	copy = *head;
-
-	while (copy)
-	{
-		copy = copy->next;
-		size++;
-	}
-	return (size);
-
-}
-
-/**
- * copy_linkedlist - Check if linked_list is palindrome
- * @head: pointer to head of list
- * @array: pointer to copy linked list
- * Return: number of nodes
- */
-void copy_linkedlist(listint_t **head, int *array)
-{
-	int i;
-	listint_t *copy;
-
-	copy = *head;
-	i = 0;
-	while (copy)
-	{
-		array[i] = copy->n;
-		copy = copy->next;
-		i++;
-	}
-}
-
-/**
- * is_palindrome - Check if linked_list is palindrome
- * @head: pointer to head of list
- * Return: number of nodes
- */
 int is_palindrome(listint_t **head)
 {
-	int size;
-	int *array;
-	int i;
+	int length = list_length(head);
+	int half_length = length / 2;
+	int i, if_palindrome = 1;
+	listint_t *reversed_head;
+	listint_t *current = *head;
+	listint_t *current_reversed;
 
-	(void)array;
-	size = size_linkedlist(head);
-	array = malloc(size * sizeof(int));
-	copy_linkedlist(head, array);
-	size--;
-	i = 0;
-	while (size)
+	reversed_head = *head;
+	for (i = 0; i < half_length; i++)
+		reversed_head = reversed_head->next;
+	if (length % 2 != 0)
+		reversed_head = reversed_head->next;
+	reversed_head = reversed(&reversed_head);
+	current_reversed = reversed_head;
+	current = *head;
+	while (current_reversed != NULL)
 	{
-		if (array[i] != array[size])
-			return (0);
-		i++;
-		size--;
+		if (current_reversed->n != current->n)
+			if_palindrome = 0;
+		current_reversed = current_reversed->next;
+		current = current->next;
 	}
-	return (1);
+	return (if_palindrome);
 }
+
+/**
+ * list_length - Get the length of a linked list
+ * @head: linked list head
+ * Return: lenght
+ */
+
+int list_length(listint_t **head)
+{
+	int i;
+	listint_t *current = *head;
+
+	for (i = 0; current != NULL; i++)
+		current = current->next;
+	return (i);
+}
+
+/**
+ * reversed - function that reversed a linked list
+ * @head: double pointer
+ * Return: Address of the new element
+ */
+
+listint_t *reversed(listint_t **head)
+{
+	listint_t *prev = NULL, *current = *head, *next = NULL;
+
+	while (current != NULL)
+	{
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
+	}
+	*head = prev;
+	return (*head);
+}
+
+
