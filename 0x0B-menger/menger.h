@@ -1,9 +1,8 @@
-#ifndef PALINDROME_H
-#define PALINDROME_H
+#ifndef MENGER_H
+#define MENGER_H
 
-#include <stdlib.h>
+#include <stdio.h>
 
+void menger(int level);
 
-int is_palindrome(unsigned long n);
-
-#endif /* PALINDROME_H */
+#endif/*MENGER*/
