@@ -1,27 +1,40 @@
-#include <stdlib.h>
-#include <stdio.h>
-
-#include "palindrome.h"
+#include "menger.h"
 
 /**
- * is_palindrome - Function to check palindromes
- * @n: Number to be checked
- * Return: integer 1 or 0
+ * menger - Draws a 2D Menger Sponge
+ * @level: Depth of Menger Sponge to print
+ * Return: None
  */
-int is_palindrome(unsigned long n)
+
+void menger(int level)
 {
-	unsigned long num, valr = 0;
+	int axisX, axisY, d, dim = 1;
 
-	num = n;
-
-	while (num != 0)
+	if (level >= 0)
 	{
-		valr = valr * 10;
-		valr = valr + num % 10;
-		num = num / 10;
+		for (axisX = 0; axisX < level; axisX++)
+		{
+			dim *= 3;
+		}
+
+		for (axisX = 0; axisX < dim; axisX++)
+		{
+			for (axisY = 0; axisY < dim; axisY++)
+			{
+				for (d = dim / 3; d > 0; d /= 3)
+				{
+					if ((axisX % (d * 3)) / d == 1 && (axisY % (d * 3)) / d == 1)
+						break;
+				}
+				if (d)
+				{
+					printf(" ");
+				} else
+				{
+					printf("#");
+				}
+			}
+			printf("\n");
+		}
 	}
-	if (n == valr)
-		return (1);
-	else
-		return (0);
 }
