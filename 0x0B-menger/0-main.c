@@ -1,7 +1,7 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-#include "palindrome.h"
+#include "menger.h"
 
 /**
  * main - Entry point
@@ -13,22 +13,16 @@
  */
 int main(int ac, char **av)
 {
-	unsigned long n;
-	int ret;
+	int level;
 
 	if (ac < 2)
 	{
-		fprintf(stderr, "Usage: %s arg\n", av[0]);
+		fprintf(stderr, "Usage: %s level\n", av[0]);
 		return (EXIT_FAILURE);
 	}
 
-	n = (unsigned long)(atol(av[1]));
-	ret = is_palindrome(n);
-
-	printf("%lu is ", n);
-	if (ret == 0)
-		printf("not ");
-	printf("a palindrome.\n");
+	level = atoi(av[1]);
+	menger(level);
 
 	return (EXIT_SUCCESS);
 }
